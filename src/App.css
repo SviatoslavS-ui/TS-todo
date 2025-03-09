@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+
+#root {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.app h1 {
+  margin: 0;  /* Reset margins */
+  font-size: 4rem;
+}
+
+.todo-list {
+  position: relative;
+  margin-right: 100px;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+}
+
+.todo-list h1 {
+  margin: 0 0 2rem 0;
+  color: #2196f3;
+  text-align: center;
+}
+
+.todo-list form {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+  align-items: center;
+  margin: 0 auto 2rem auto;
+}
+
+.todo-list input[type="text"] {
+  flex: 1;
+  min-width: 300px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Common button styles */
+.todo-list button,
+.todo-item button {
+  min-width: 80px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-list form button {
+  background-color: #646cff;
+}
+
+.todo-list form button:hover {
+  background-color: #535bf2;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  min-height: 38px;
+  background-color: #fff;
+  margin: 10px 0;
+}
+
+.todo-item input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.todo-item span {
+  flex: 1;
+  font-size: 1.6rem;
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.todo-item .edit-input {
+  flex: 1;
+  font-size: 1.6rem !important;
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  border: 2px solid #2196f3;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background: white;
+  outline: none;
+  margin: 0;
+  min-width: 0;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.3);
+  width: 100%;
+}
+
+.todo-item button {
+  background-color: #ff4444;
+}
+
+.todo-item button:hover {
+  background-color: #cc0000;
+}
+
+body {
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  overflow-y: hidden;
+}
+
+.todos {
+  height: 400px;
+  overflow-y: auto;
+  border: 2px solid #2196f3;
+  border-radius: 12px;
+  position: relative;
+  background-color: #fff;
+  background-image: 
+    linear-gradient(90deg, rgba(200,204,209,.3) 1px, transparent 1px),
+    linear-gradient(rgba(200,204,209,.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.todos::-webkit-scrollbar {
+  width: 8px;
+}
+
+.todos::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.todos::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.todos::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.app-container {
+  display: flex;
+  padding: 0 30px;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.sign-in {
+  width: 300px;
+  padding: 2rem;
+  border: 2px solid #2196f3;
+  border-radius: 12px;
+  background: white;
+  height: fit-content;
+  margin-right: auto;
+}
+
+.sign-in h3 {
+  margin: 0 0 1rem 0;
+  color: #2196f3;
+  text-align: center;
+}
+
+.sign-in form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sign-in input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.sign-in button {
+  background: #17cf27;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.sign-in button:hover {
+  background: #118b11;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.user-info button {
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-info button:hover {
+    background: #cc0000;
+}
+
+.error {
+    color: #ff4444;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.switch-auth {
+    background: transparent !important;
+    color: #2196f3 !important;
+    text-decoration: underline;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.switch-auth:hover {
+    color: #1976d2 !important;
+    background: #f5f5f5 !important;
+}
+
+.forgot-password {
+    background: transparent !important;
+    color: #ff4444 !important;
+    text-decoration: underline;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.forgot-password:hover {
+    color: #cc0000 !important;
+    background: #f5f5f5 !important;
+}
