@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Checkbox -->
+        <rect x="4" y="4" width="16" height="16" rx="3" stroke="#2196f3" stroke-width="2"/>
+        
+        <!-- Checkmark -->
+        <path 
+            d="M7 12 L11 16 L17 8" 
+            stroke="#ff4444" 
+            stroke-width="2.5" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+        />
+    </g>
+</svg> 
