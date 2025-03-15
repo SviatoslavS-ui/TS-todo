@@ -31,7 +31,7 @@ const setupTodosListener = (
     const q = query(
         todosRef,
         where('userId', '==', userId),
-        orderBy('createdAt', 'asc')
+        orderBy('createdAt', 'desc')
     );
 
     return onSnapshot(
@@ -48,16 +48,9 @@ const setupTodosListener = (
                     };
                 });
 
-                // Sort todos by createdAt
-                const sortedTodos = todos.sort((a, b) => {
-                    const timeA = a.createdAt?.seconds || 0;
-                    const timeB = b.createdAt?.seconds || 0;
-                    return timeA - timeB;
-                });
-
-                // Only log the final sorted state
-                console.log('Current todos:', sortedTodos.map(t => `${t.text} (${t.createdAt?.seconds || 'pending'})`));
-                onData(sortedTodos);
+                // Only log the final state
+                console.log('Current todos:', todos.map(t => `${t.text} (${t.createdAt?.seconds || 'pending'})`));
+                onData(todos);
             } catch (err) {
                 console.error('Error processing todos:', err);
                 onError(err instanceof Error ? err : new Error('Unknown error processing todos'));
@@ -112,8 +105,15 @@ export const TodoList: React.FC = () => {
 
     useEffect(() => {
         if (shouldScroll && todosContainerRef.current) {
-            todosContainerRef.current.scrollTop = todosContainerRef.current.scrollHeight;
-            setShouldScroll(false);
+            setTimeout(() => {
+                if (todosContainerRef.current) {
+                    todosContainerRef.current.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+                setShouldScroll(false);
+            }, 100);
         }
     }, [todos, shouldScroll]);
 
@@ -182,6 +182,10 @@ export const TodoList: React.FC = () => {
                     />
                     <button type="submit">Add</button>
                 </form>
+                <div className="todo-list-header">
+                    <div className="done-label">Done</div>
+                    <div style={{ flex: 1 }}></div>
+                </div>
                 <div className="todos" ref={todosContainerRef}>
                     {todos.map((todo) => (
                         <Todo

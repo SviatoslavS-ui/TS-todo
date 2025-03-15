@@ -1,0 +1,25 @@
+/* Regular weight */
+@font-face {
+    font-family: 'Caveat';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Caveat'),
+         url('./caveat.ttf') format('truetype');
+    font-display: swap;
+}
+
+/* Semi-bold weight */
+@font-face {
+    font-family: 'Caveat';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Caveat'),
+         url('./caveat.ttf') format('truetype');
+    font-display: swap;
+}
+
+/* Fallback font style to ensure text is visible while font loads */
+.todo-item span,
+.todo-item .edit-input {
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
+} 
