@@ -69,6 +69,7 @@ export const TodoList: React.FC = () => {
     const [shouldScroll, setShouldScroll] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const todosContainerRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
     const { user, logout } = useUser();
 
     useEffect(() => {
@@ -113,9 +114,15 @@ export const TodoList: React.FC = () => {
                     });
                 }
                 setShouldScroll(false);
-            }, 100);
+            }, 50);
         }
     }, [todos, shouldScroll]);
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
 
     const addTodo = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -132,6 +139,7 @@ export const TodoList: React.FC = () => {
                 await addDoc(todosRef, newTodoData);
                 setNewTodo('');
                 setShouldScroll(true);
+                inputRef.current?.focus();
             } catch (error) {
                 console.error('Error adding todo:', error);
                 setError(error instanceof Error ? error.message : 'Error adding todo');
@@ -175,6 +183,7 @@ export const TodoList: React.FC = () => {
                 {error && <div className="error">{error}</div>}
                 <form onSubmit={addTodo}>
                     <input
+                        ref={inputRef}
                         type="text"
                         value={newTodo}
                         onChange={(e) => setNewTodo(e.target.value)}
@@ -183,8 +192,9 @@ export const TodoList: React.FC = () => {
                     <button type="submit">Add</button>
                 </form>
                 <div className="todo-list-header">
-                    <div className="done-label">Done</div>
+                    <div className="header-label done-label">Done</div>
                     <div style={{ flex: 1 }}></div>
+                    <div className="header-label created-label" style={{ marginRight: '10.5rem' }}>Created</div>
                 </div>
                 <div className="todos" ref={todosContainerRef}>
                     {todos.map((todo) => (

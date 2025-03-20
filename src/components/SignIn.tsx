@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useUser } from '../contexts/UserContext';
 
 export const SignIn: React.FC = () => {
@@ -7,6 +7,13 @@ export const SignIn: React.FC = () => {
     const [isSignUp, setIsSignUp] = useState(false);
     const [error, setError] = useState('');
     const { signIn, signUp, resetPassword } = useUser();
+    const emailInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (emailInputRef.current) {
+            emailInputRef.current.focus();
+        }
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -40,20 +47,23 @@ export const SignIn: React.FC = () => {
     return (
         <div className="sign-in">
             <h3>{isSignUp ? 'Sign Up' : 'Login here'}</h3>
+            {error && <div className="error">{error}</div>}
             <form onSubmit={handleSubmit}>
                 <input
+                    ref={emailInputRef}
                     type="email"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="Email"
+                    required
                 />
                 <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
+                    required
                 />
-                {error && <div className="error">{error}</div>}
                 <button type="submit">
                     {isSignUp ? 'Sign Up' : 'Login'}
                 </button>

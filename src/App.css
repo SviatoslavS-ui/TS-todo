@@ -26,12 +26,12 @@
   margin-right: 100px;
   display: flex;
   flex-direction: column;
-  width: 800px;
+  width: 1000px;
 }
 
 .todo-list h1 {
   margin: 0 0 2rem 0;
-  color: #2196f3;
+  color: #646cff;
   text-align: center;
 }
 
@@ -85,6 +85,7 @@
   min-height: 38px;
   background-color: #fff;
   margin: 10px 0;
+  width: 900px;
 }
 
 .todo-item input[type="checkbox"] {
@@ -181,7 +182,7 @@ body {
     linear-gradient(rgba(200,204,209,.3) 1px, transparent 1px);
   background-size: 20px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 800px;
+  width: 1000px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -195,6 +196,7 @@ body {
   min-height: 38px;
   background-color: #fff;
   margin: 10px 0;
+  width: 900px;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -329,10 +331,17 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.todo-list-header .done-label {
-  width: 4rem;  /* Same as checkbox width */
-  color: #4CAF50;
+.todo-list-header .header-label {
   font-weight: 600;
   font-size: 0.9rem;
   text-align: center;
+}
+
+.todo-list-header .done-label {
+  width: 4rem;  /* Same as checkbox width */
+  color: #34ad1c;
+}
+
+.todo-list-header .created-label {
+  color: #3c59e8;
 }
