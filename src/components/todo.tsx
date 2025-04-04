@@ -8,6 +8,7 @@ export const Todo: React.FC<TodoProps> = ({
   onToggle,
   onDelete,
   onEdit,
+  onUrgent,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(todo.text);
@@ -46,7 +47,7 @@ export const Todo: React.FC<TodoProps> = ({
   };
 
   return (
-    <div className="todo-item">
+    <div className={`todo-item ${todo.urgent ? 'urgent' : ''}`}>
       <input
         type="checkbox"
         checked={todo.completed}
@@ -81,7 +82,13 @@ export const Todo: React.FC<TodoProps> = ({
               : ""}
           </span>
         </div>
-        <button onClick={() => onDelete(todo.id)}>Delete</button>
+        <button className="delete-btn" onClick={() => onDelete(todo.id)}>Delete</button>
+        <button 
+          className="urgent-btn" 
+          onClick={() => onUrgent(todo.id)}
+        >
+          Urgent
+        </button>
       </div>
     </div>
   );

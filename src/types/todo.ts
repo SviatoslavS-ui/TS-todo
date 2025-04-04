@@ -5,6 +5,7 @@ export interface TodoItem {
   text: string;
   completed: boolean;
   createdAt?: Timestamp;
+  urgent?: boolean;
 }
 
 export interface TodoProps {
@@ -12,4 +13,5 @@ export interface TodoProps {
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
   onEdit: (id: string, newText: string) => void;
+  onUrgent: (id: string) => void;
 }

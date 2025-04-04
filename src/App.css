@@ -24,20 +24,34 @@
 
 .todo-list {
   position: relative;
-  margin-right: var(--spacing-xl);
-  display: flex;
-  flex-direction: column;
   width: var(--container-lg);
   padding: 0;
+  margin: 0 auto;
 }
 
-.todo-list h1 {
-  margin: 0 0 var(--spacing-xl) 0;
+.todo-list .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  margin: 2rem auto var(--spacing-xl) auto;  /* Adjust top margin here */
+  padding: 0;
+  width: 100%;
+}
+
+.todo-list .header h1 {
+  margin: 0;
   color: var(--secondary-color);
   text-align: center;
   font-family: 'Caveat', cursive;
   font-size: 4.5rem;
   font-weight: 600;
+  flex-shrink: 0;
+  /* You can adjust individual margins here if needed */
+  margin-right: 100px;    /* pushes title to left */
+  /* margin-left: auto;     /* pushes title to right */
+  /* margin-top: 2rem;      /* moves title down */
+  /* margin-bottom: 2rem;   /* adds space below title */
 }
 
 .todo-list form {
@@ -53,7 +67,9 @@
   flex: 1;
   min-width: 300px;
   padding: var(--spacing-sm);
-  font-size: var(--text-base);
+  font-size: var(--text-xl);
+  font-family: 'Caveat', sans-serif;
+  font-style: normal;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
 }
@@ -83,12 +99,25 @@
 
 body {
   background-color: var(--bg-secondary);
+  background-image: url('../src/assets/img/bg_image.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  width: 100vw;
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   overflow-y: hidden;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .todos {
@@ -202,20 +231,52 @@ body {
   background: var(--success-hover);
 }
 
+div.user-info {
+  margin-left: 150px;
+}
+
 .user-info {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
+  flex-shrink: 0;
 }
 
+.user-info span {
+  color: var(--text-color);
+  font-size: var(--text-base);
+}
+
+/* Consolidated logout button styles */
 .user-info button {
+  width: 90px;
+  height: 20px;
   background: var(--danger-color);
   color: white;
-  border: none;
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-sm);
+  border-radius: 12px;
   cursor: pointer;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: background-color 0.2s ease;
+  overflow: hidden;
+  white-space: nowrap;
+  border: none;
+}
+
+.user-info button span {
+  color: white;  /* Ensure span text is white */
+  font-size: 12px;
+}
+
+.user-info button svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
 }
 
 .user-info button:hover {
@@ -258,7 +319,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0 1rem;
+  padding: 5px;
   margin-bottom: 0.5rem;
 }
 
@@ -275,4 +336,5 @@ body {
 
 .todo-list-header .created-label {
   color: #3c59e8;
+  margin-right: 13rem;
 }

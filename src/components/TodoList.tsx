@@ -45,6 +45,7 @@ const setupTodosListener = (
             text: data.text,
             completed: data.completed,
             createdAt: data.createdAt,
+            urgent: data.urgent || false,
           };
         });
 
@@ -140,6 +141,7 @@ export const TodoList: React.FC = () => {
           completed: false,
           userId: user.uid,
           createdAt: serverTimestamp(),
+          urgent: false,
         };
 
         const todosRef = collection(db, TODOS_COLLECTION);
@@ -161,6 +163,22 @@ export const TodoList: React.FC = () => {
       await updateDoc(todoRef, {
         completed: !todo.completed,
       });
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 500);
+    }
+  };
+
+  const toggleUrgent = async (id: string) => {
+    const todoRef = doc(db, "todos", id);
+    const todo = todos.find((t) => t.id === id);
+    if (todo) {
+      await updateDoc(todoRef, {
+        urgent: !todo.urgent,
+      });
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 500);
     }
   };
 
@@ -173,6 +191,9 @@ export const TodoList: React.FC = () => {
     await updateDoc(todoRef, {
       text: newText,
     });
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 500);
   };
 
   if (!user) {
@@ -180,45 +201,48 @@ export const TodoList: React.FC = () => {
   }
 
   return (
-    <div className="app-container">
-      <div className="user-info">
-        <p>Welcome, {user.email}</p>
-        <button onClick={logout}>Logout</button>
-      </div>
-      <div className="todo-list">
+    <div className="todo-list">
+      <div className="header">
         <h1>Wish List</h1>
-        {error && <div className="error">{error}</div>}
-        <form onSubmit={addTodo}>
-          <input
-            ref={inputRef}
-            type="text"
-            value={newTodo}
-            onChange={(e) => setNewTodo(e.target.value)}
-            placeholder="Add a new todo"
+        <div className="user-info">
+          <span>Welcome, {user.email}</span>
+          <button onClick={logout}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10v1m-4 5H3"/>
+            </svg>
+            <span>Logout</span>
+          </button>
+        </div>
+      </div>
+      {error && <div className="error">{error}</div>}
+      <form onSubmit={addTodo}>
+        <input
+          ref={inputRef}
+          type="text"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="Add a new wish"
+        />
+        <button type="submit">Add</button>
+      </form>
+      <div className="todo-list-header">
+        <div className="header-label done-label">Done</div>
+        <div style={{ flex: 1 }}></div>
+        <div className="header-label created-label">
+          Created
+        </div>
+      </div>
+      <div className="todos" ref={todosContainerRef}>
+        {todos.map((todo) => (
+          <Todo
+            key={todo.id}
+            todo={todo}
+            onToggle={toggleTodo}
+            onDelete={deleteTodo}
+            onEdit={editTodo}
+            onUrgent={toggleUrgent}
           />
-          <button type="submit">Add</button>
-        </form>
-        <div className="todo-list-header">
-          <div className="header-label done-label">Done</div>
-          <div style={{ flex: 1 }}></div>
-          <div
-            className="header-label created-label"
-            style={{ marginRight: "10.5rem" }}
-          >
-            Created
-          </div>
-        </div>
-        <div className="todos" ref={todosContainerRef}>
-          {todos.map((todo) => (
-            <Todo
-              key={todo.id}
-              todo={todo}
-              onToggle={toggleTodo}
-              onDelete={deleteTodo}
-              onEdit={editTodo}
-            />
-          ))}
-        </div>
+        ))}
       </div>
     </div>
   );

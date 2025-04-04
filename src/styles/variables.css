@@ -8,6 +8,9 @@
   --success-hover: #34ad1c;
   --danger-color: #ff4444;
   --danger-hover: #cc0000;
+  --warning-color: #fc660f;
+  --warning-hover: #e86a1f;
+  --warning-bg: rgba(252, 125, 50, 0.1);
   --border-color: #ddd;
   --text-color: #213547;
   --bg-color: #fff;
